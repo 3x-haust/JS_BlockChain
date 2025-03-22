@@ -1,9 +1,265 @@
-Blockchain Benchmark started at 2025-03-22T13:30:49.589Z
+Blockchain Benchmark started at 2025-03-22T14:19:42.189Z
 Starting benchmark comparing SQLite, Blockchain, and Hybrid data structures...
-Parameters: size=10000, testCount=10000, totalRuns=100
+Parameters: size=10000, testCount=10000, totalRuns=10
 Intervals tested: 1, 2, 3, 4, 5, 10, 25, 50, 100
 Cleaning up any existing database files...
-Running benchmark 1/100 with size: 10000, test count: 10000
-Populating data structures...
+Populating data structures with 10000 elements...
 Populated 0 elements...
 Populated 1000 elements...
+Populated 2000 elements...
+Populated 3000 elements...
+Populated 4000 elements...
+Populated 5000 elements...
+Populated 6000 elements...
+Populated 7000 elements...
+Populated 8000 elements...
+Populated 9000 elements...
+Running benchmark 1/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 366.223625 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 116288.060625 ms
+Testing HybridListB...
+HybridListB access time: 401.267583 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 990.319834 ms
+HybridListA (interval=2) access time: 1016.374375 ms
+HybridListA (interval=3) access time: 1015.870167 ms
+HybridListA (interval=4) access time: 992.571875 ms
+HybridListA (interval=5) access time: 990.688833 ms
+HybridListA (interval=10) access time: 993.779750 ms
+HybridListA (interval=25) access time: 1019.346166 ms
+HybridListA (interval=50) access time: 1032.000667 ms
+HybridListA (interval=100) access time: 1025.315458 ms
+----------------------------------------
+
+Running benchmark 2/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 353.103417 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 112703.716708 ms
+Testing HybridListB...
+HybridListB access time: 470.237375 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1084.791792 ms
+HybridListA (interval=2) access time: 1057.682625 ms
+HybridListA (interval=3) access time: 1060.418583 ms
+HybridListA (interval=4) access time: 1054.731542 ms
+HybridListA (interval=5) access time: 1059.147042 ms
+HybridListA (interval=10) access time: 1053.228250 ms
+HybridListA (interval=25) access time: 1048.336458 ms
+HybridListA (interval=50) access time: 1086.371625 ms
+HybridListA (interval=100) access time: 995.274750 ms
+----------------------------------------
+
+Running benchmark 3/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 345.633750 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 113590.548542 ms
+Testing HybridListB...
+HybridListB access time: 412.223542 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 970.751416 ms
+HybridListA (interval=2) access time: 963.880125 ms
+HybridListA (interval=3) access time: 1109.578291 ms
+HybridListA (interval=4) access time: 1108.092209 ms
+HybridListA (interval=5) access time: 1081.236833 ms
+HybridListA (interval=10) access time: 1127.054958 ms
+HybridListA (interval=25) access time: 1221.541709 ms
+HybridListA (interval=50) access time: 1270.349250 ms
+HybridListA (interval=100) access time: 1044.739125 ms
+----------------------------------------
+
+Running benchmark 4/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 393.520333 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 124798.339292 ms
+Testing HybridListB...
+HybridListB access time: 443.547750 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1070.545917 ms
+HybridListA (interval=2) access time: 1187.738167 ms
+HybridListA (interval=3) access time: 1112.281125 ms
+HybridListA (interval=4) access time: 1063.991833 ms
+HybridListA (interval=5) access time: 1089.074750 ms
+HybridListA (interval=10) access time: 1046.580750 ms
+HybridListA (interval=25) access time: 1007.478083 ms
+HybridListA (interval=50) access time: 1033.691917 ms
+HybridListA (interval=100) access time: 1062.113709 ms
+----------------------------------------
+
+Running benchmark 5/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 417.685000 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 125993.954334 ms
+Testing HybridListB...
+HybridListB access time: 471.908000 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1179.290292 ms
+HybridListA (interval=2) access time: 1106.452125 ms
+HybridListA (interval=3) access time: 1188.372958 ms
+HybridListA (interval=4) access time: 1280.743042 ms
+HybridListA (interval=5) access time: 1269.304333 ms
+HybridListA (interval=10) access time: 1193.851500 ms
+HybridListA (interval=25) access time: 1232.770500 ms
+HybridListA (interval=50) access time: 1166.067708 ms
+HybridListA (interval=100) access time: 1194.471459 ms
+----------------------------------------
+
+Running benchmark 6/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 432.067500 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 103481.356750 ms
+Testing HybridListB...
+HybridListB access time: 468.701791 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1047.998541 ms
+HybridListA (interval=2) access time: 1039.972167 ms
+HybridListA (interval=3) access time: 1048.905458 ms
+HybridListA (interval=4) access time: 1032.904833 ms
+HybridListA (interval=5) access time: 1032.077917 ms
+HybridListA (interval=10) access time: 1034.395125 ms
+HybridListA (interval=25) access time: 1029.599333 ms
+HybridListA (interval=50) access time: 1036.953333 ms
+HybridListA (interval=100) access time: 1032.230542 ms
+----------------------------------------
+
+Running benchmark 7/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 431.279083 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 94455.929708 ms
+Testing HybridListB...
+HybridListB access time: 468.858750 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1038.522500 ms
+HybridListA (interval=2) access time: 1026.586833 ms
+HybridListA (interval=3) access time: 1035.432167 ms
+HybridListA (interval=4) access time: 1022.069250 ms
+HybridListA (interval=5) access time: 1042.703250 ms
+HybridListA (interval=10) access time: 1023.598875 ms
+HybridListA (interval=25) access time: 1018.801208 ms
+HybridListA (interval=50) access time: 1025.364833 ms
+HybridListA (interval=100) access time: 1020.524375 ms
+----------------------------------------
+
+Running benchmark 8/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 428.817209 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 95059.238959 ms
+Testing HybridListB...
+HybridListB access time: 467.250875 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1040.936875 ms
+HybridListA (interval=2) access time: 1033.616166 ms
+HybridListA (interval=3) access time: 1041.011166 ms
+HybridListA (interval=4) access time: 1028.372542 ms
+HybridListA (interval=5) access time: 1024.681042 ms
+HybridListA (interval=10) access time: 1029.026917 ms
+HybridListA (interval=25) access time: 1029.156708 ms
+HybridListA (interval=50) access time: 1031.644834 ms
+HybridListA (interval=100) access time: 1031.281833 ms
+----------------------------------------
+
+Running benchmark 9/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 429.201583 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 99327.238917 ms
+Testing HybridListB...
+HybridListB access time: 470.670916 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1057.527750 ms
+HybridListA (interval=2) access time: 1057.562916 ms
+HybridListA (interval=3) access time: 1075.575000 ms
+HybridListA (interval=4) access time: 1161.318417 ms
+HybridListA (interval=5) access time: 1149.156917 ms
+HybridListA (interval=10) access time: 1134.124708 ms
+HybridListA (interval=25) access time: 1049.377125 ms
+HybridListA (interval=50) access time: 1056.292875 ms
+HybridListA (interval=100) access time: 1056.592583 ms
+----------------------------------------
+
+Running benchmark 10/10 with size: 10000, test count: 10000
+Testing SQLite Array...
+SQLite Array access time: 438.071750 ms
+Testing Secure Blockchain...
+Secure Blockchain access time: 96131.849458 ms
+Testing HybridListB...
+HybridListB access time: 475.534250 ms
+Testing HybridListA with different intervals...
+HybridListA (interval=1) access time: 1103.402042 ms
+HybridListA (interval=2) access time: 1053.027167 ms
+HybridListA (interval=3) access time: 1053.300791 ms
+HybridListA (interval=4) access time: 1051.203542 ms
+HybridListA (interval=5) access time: 1047.482291 ms
+HybridListA (interval=10) access time: 1048.840208 ms
+HybridListA (interval=25) access time: 1043.970958 ms
+HybridListA (interval=50) access time: 1041.606167 ms
+HybridListA (interval=100) access time: 1044.154542 ms
+----------------------------------------
+
+Cleaned up database file: test.db
+Cleaned up database file: hybridB.db
+Cleaned up database file: hybridA_int1.db
+Cleaned up database file: hybridA_int2.db
+Cleaned up database file: hybridA_int3.db
+Cleaned up database file: hybridA_int4.db
+Cleaned up database file: hybridA_int5.db
+Cleaned up database file: hybridA_int10.db
+Cleaned up database file: hybridA_int25.db
+Cleaned up database file: hybridA_int50.db
+Cleaned up database file: hybridA_int100.db
+
+All benchmarks completed in 1844.04 seconds
+
+========= AVERAGE RESULTS =========
+Based on 10 runs
+
+Average SQLite Array access time: 403.560325 ms
+Average Secure Blockchain access time: 108183.023329 ms
+Average HybridListB access time: 455.020083 ms
+Average HybridListA (interval=1) access time: 1058.408696 ms
+Average HybridListA (interval=2) access time: 1054.289267 ms
+Average HybridListA (interval=3) access time: 1074.074571 ms
+Average HybridListA (interval=4) access time: 1079.599908 ms
+Average HybridListA (interval=5) access time: 1078.555321 ms
+Average HybridListA (interval=10) access time: 1068.448104 ms
+Average HybridListA (interval=25) access time: 1070.037825 ms
+Average HybridListA (interval=50) access time: 1078.034321 ms
+Average HybridListA (interval=100) access time: 1050.669838 ms
+
+========= PERFORMANCE RANKING =========
+From fastest to slowest:
+
+1. SQLite Array: 403.560325 ms
+2. HybridListB: 455.020083 ms
+3. HybridListA (interval=100): 1050.669838 ms
+4. HybridListA (interval=2): 1054.289267 ms
+5. HybridListA (interval=1): 1058.408696 ms
+6. HybridListA (interval=10): 1068.448104 ms
+7. HybridListA (interval=25): 1070.037825 ms
+8. HybridListA (interval=3): 1074.074571 ms
+9. HybridListA (interval=50): 1078.034321 ms
+10. HybridListA (interval=5): 1078.555321 ms
+11. HybridListA (interval=4): 1079.599908 ms
+12. Secure Blockchain: 108183.023329 ms
+
+========= BEST HYBRID CONFIGURATION =========
+The best performing HybridListA has interval=100 with average access time: 1050.669838 ms
+This is 102.97x faster than the regular Secure Blockchain
+This is 2.60x slower than the SQLite Array
+
+HybridListB average access time: 455.020083 ms
+This is 237.75x faster than the regular Secure Blockchain
+This is 1.13x slower than the SQLite Array
+
+Comparison: HybridListB is 2.31x slower than the best HybridListA (interval=100)
+Results saved to blockchain_benchmark_results.json
+
+Benchmark completed at 2025-03-22T14:50:26.202Z
