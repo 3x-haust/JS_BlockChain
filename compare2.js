@@ -362,48 +362,17 @@ class HybridListB {
 
 const getRandomIndex = max => Math.floor(Math.random() * max);
 
-const runBenchmark = async (size, testCount, intervals, runNumber, results, totalRuns) => {
+const runBenchmark = async (size, testCount, intervals, runNumber, results, totalRuns, dataStructures) => {
   logToFile(`Running benchmark ${runNumber}/${totalRuns} with size: ${size}, test count: ${testCount}`);
   
-  const sqliteArray = new SQLiteArray(`test_run_${runNumber}.db`);
-  await sqliteArray.reset();
-  
-  const blockchain = new SecureBlockchain();
-  const hybridListB = new HybridListB(`hybridB_run_${runNumber}.db`);
-  await hybridListB.reset();
-  
-  const hybridListsA = {};
-  for (const interval of intervals) {
-    hybridListsA[interval] = new HybridListA(interval, `hybridA_int${interval}_run_${runNumber}.db`);
-    await hybridListsA[interval].reset();
-  }
-
-  logToFile("Populating data structures...");
-  for (let i = 0; i < size; i++) {
-    const value = { id: i, data: `Data-${i}` };
-    await sqliteArray.append(value);
-    blockchain.append(value);
-    await hybridListB.append(value);
-    
-    for (const interval of intervals) {
-      await hybridListsA[interval].append(value);
-    }
-    
-    if (i % 1000 === 0) {
-      logToFile(`Populated ${i} elements...`);
-    }
-  }
-
-  const randomIndices = [];
-  for (let i = 0; i < testCount; i++) {
-    randomIndices.push(getRandomIndex(size));
-  }
+  const { sqliteArray, blockchain, hybridListB, hybridListsA } = dataStructures;
+  const randomIndices = Array.from({ length: testCount }, () => getRandomIndex(size));
 
   logToFile("Testing SQLite Array...");
   let start = performance.now();
   for (let i = 0; i < testCount; i++) {
     const index = randomIndices[i];
-    const value = await sqliteArray.get(index);
+    await sqliteArray.get(index);
   }
   let end = performance.now();
   const sqliteTime = end - start;
@@ -414,7 +383,7 @@ const runBenchmark = async (size, testCount, intervals, runNumber, results, tota
   start = performance.now();
   for (let i = 0; i < testCount; i++) {
     const index = randomIndices[i];
-    const value = blockchain.get(index);
+    blockchain.get(index);
   }
   end = performance.now();
   const blockchainTime = end - start;
@@ -425,7 +394,7 @@ const runBenchmark = async (size, testCount, intervals, runNumber, results, tota
   start = performance.now();
   for (let i = 0; i < testCount; i++) {
     const index = randomIndices[i];
-    const value = await hybridListB.get(index);
+    await hybridListB.get(index);
   }
   end = performance.now();
   const hybridListBTime = end - start;
@@ -437,7 +406,7 @@ const runBenchmark = async (size, testCount, intervals, runNumber, results, tota
     start = performance.now();
     for (let i = 0; i < testCount; i++) {
       const index = randomIndices[i];
-      const value = await hybridListsA[interval].get(index);
+      await hybridListsA[interval].get(index);
     }
     end = performance.now();
     const hybridTime = end - start;
@@ -450,24 +419,42 @@ const runBenchmark = async (size, testCount, intervals, runNumber, results, tota
     logToFile(`HybridListA (interval=${interval}) access time: ${hybridTime.toFixed(6)} ms`);
   }
   
-  await sqliteArray.close();
-  await hybridListB.close();
-  for (const interval of intervals) {
-    await hybridListsA[interval].close();
-  }
-  
-  try {
-    fs.unlinkSync(sqliteArray.dbName);
-    fs.unlinkSync(hybridListB.dbName);
-    for (const interval of intervals) {
-      fs.unlinkSync(hybridListsA[interval].dbName);
-    }
-    logToFile(`Cleaned up database files for run ${runNumber}`);
-  } catch (err) {
-    logToFile(`Error cleaning up database files: ${err.message}`);
-  }
-  
   logToFile("----------------------------------------\n");
+};
+
+const populateDataStructures = async (size, intervals) => {
+  const dataStructures = {
+    sqliteArray: new SQLiteArray('test.db'),
+    blockchain: new SecureBlockchain(),
+    hybridListB: new HybridListB('hybridB.db'),
+    hybridListsA: {}
+  };
+
+  await dataStructures.sqliteArray.reset();
+  await dataStructures.hybridListB.reset();
+  
+  for (const interval of intervals) {
+    dataStructures.hybridListsA[interval] = new HybridListA(interval, `hybridA_int${interval}.db`);
+    await dataStructures.hybridListsA[interval].reset();
+  }
+
+  logToFile("Populating data structures with 10000 elements...");
+  for (let i = 0; i < size; i++) {
+    const value = { id: i, data: `Data-${i}` };
+    await dataStructures.sqliteArray.append(value);
+    dataStructures.blockchain.append(value);
+    await dataStructures.hybridListB.append(value);
+    
+    for (const interval of intervals) {
+      await dataStructures.hybridListsA[interval].append(value);
+    }
+    
+    if (i % 1000 === 0) {
+      logToFile(`Populated ${i} elements...`);
+    }
+  }
+
+  return dataStructures;
 };
 
 const calculateAndPrintAverages = (results, totalRuns) => {
@@ -590,7 +577,7 @@ const cleanupDBFiles = () => {
 const intervals = [1, 2, 3, 4, 5, 10, 25, 50, 100];
 const size = 10000;
 const testCount = 10000;
-const totalRuns = 100;
+const totalRuns = 10;
 
 const results = {
   sqlite: [],
@@ -602,7 +589,7 @@ const results = {
 fs.writeFileSync(LOG_FILE_PATH, `Blockchain Benchmark started at ${new Date().toISOString()}\n`);
 fs.writeFileSync(RESULTS_FILE_PATH, '{}');
 
-logToFile(`Starting benchmark comparing SQLite, Blockchain, and Hybrid data structures...`);
+logToFile("Starting benchmark comparing SQLite, Blockchain, and Hybrid data structures...");
 logToFile(`Parameters: size=${size}, testCount=${testCount}, totalRuns=${totalRuns}`);
 logToFile(`Intervals tested: ${intervals.join(', ')}`);
 
@@ -612,10 +599,33 @@ const runAllBenchmarks = async () => {
   
   const startTime = performance.now();
   
+  const dataStructures = await populateDataStructures(size, intervals);
+  
   for (let run = 1; run <= totalRuns; run++) {
-    await runBenchmark(size, testCount, intervals, run, results, totalRuns);
+    await runBenchmark(size, testCount, intervals, run, results, totalRuns, dataStructures);
   }
   
+  await dataStructures.sqliteArray.close();
+  await dataStructures.hybridListB.close();
+  for (const interval of intervals) {
+    await dataStructures.hybridListsA[interval].close();
+  }
+  
+  const dbFiles = [
+    'test.db',
+    'hybridB.db',
+    ...intervals.map(interval => `hybridA_int${interval}.db`)
+  ];
+  
+  dbFiles.forEach(file => {
+    try {
+      fs.unlinkSync(file);
+      logToFile(`Cleaned up database file: ${file}`);
+    } catch (err) {
+      logToFile(`Error cleaning up ${file}: ${err.message}`);
+    }
+  });
+
   const endTime = performance.now();
   const totalDuration = (endTime - startTime) / 1000;
   
@@ -623,9 +633,6 @@ const runAllBenchmarks = async () => {
   
   const averageSummary = calculateAndPrintAverages(results, totalRuns);
   saveResultsToFile(results, totalRuns, averageSummary);
-  
-  logToFile("\nCleaning up remaining database files...");
-  cleanupDBFiles();
   
   logToFile(`\nBenchmark completed at ${new Date().toISOString()}`);
 };

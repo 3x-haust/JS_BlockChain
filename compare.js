@@ -267,7 +267,7 @@ function calculateAndPrintAverages(results, totalRuns, logFilePath) {
 const intervals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100];
 const size = 50000;
 const testCount = 50000;
-const totalRuns = 10000;
+const totalRuns = 1000;
 const logFilePath = 'array_benchmark_log.txt';
 
 writeFileSync(logFilePath, `Benchmark started at ${new Date().toISOString()}\n`);
