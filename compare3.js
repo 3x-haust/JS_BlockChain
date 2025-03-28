@@ -448,9 +448,9 @@ const cleanupDBFiles = () => {
 };
 
 const intervals = [1, 2, 3, 4, 5, 10, 25, 50, 100];
-const size = 1000;
-const testCount = 1000;
-const totalRuns = 10;
+const size = 10000;
+const testCount = 10000;
+const totalRuns = 100;
 
 const results = { sqlite: [], blockchain: [], hybridListB: [], hybridListsA: {} };
 
